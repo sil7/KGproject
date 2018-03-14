@@ -1,10 +1,52 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%session.setAttribute("loginId", "가즈아");%>	
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="text/javascript"
+	src="<c:url value="/resources/js/socketjs-0.3.4.js"/>"></script>
+
+<script type="text/javascript">
+	
+	$(document).ready(function() {
+		$("#sendBtn").click(function() {
+			sendMessage();
+		});
+	});
+	var sock;
+	//웸소켓을 지정한 url로 연결한다.
+	sock = new SockJS("<c:url value="/echo"/>");
+	//자바스크립트 안에 function을 집어넣을 수 있음.
+	//데이터가 나한테 전달되읐을 때 자동으로 실행되는 function
+	sock.onmessage = onMessage;
+	//데이터를 끊고싶을때 실행하는 메소드
+	sock.onclose = onClose;
+	/* sock.onopen = function(){
+	     sock.send($("#message").val());
+	 }; */
+
+	function sendMessage() {
+		/*소켓으로 보내겠다.  */
+		sock.send($("#message").val());
+	}
+
+	//evt 파라미터는 웹소켓을 보내준 데이터다.(자동으로 들어옴)
+	function onMessage(evt) {
+		var data = evt.data;
+		$("#chatting_data").append("${loginId} : ");
+		$("#chatting_data").append(data + "<br/>");
+		//sock.close();
+	}
+
+	function onClose(evt) {
+		$("#chatting_data").append("연결 끊김");
+	}
+</script>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
@@ -384,6 +426,7 @@
 	font-weight: bold;
 	cursor: pointer;
 }
+
 #sellBtn {
 	width: 100%;
 	height: 60px;
@@ -431,7 +474,7 @@
 	padding: 3px;
 	border-bottom: 1px solid #DDD;
 	height: 30px;
-	line-height:30px;
+	line-height: 30px;
 	text-align: center;
 	font-weight: bold;
 	font-size: small;
@@ -440,17 +483,17 @@
 
 .tradetable_buy .col1 {
 	width: 27.2%;
-	float:left;
+	float: left;
 }
 
 .tradetable_buy .col2 {
 	width: 50%;
-	float:left;
+	float: left;
 }
 
 .tradetable_buy .col3 {
 	width: 18%;
-	float:left;
+	float: left;
 }
 
 .tradetable_sell .cell {
@@ -458,143 +501,150 @@
 	padding: 3px;
 	border-bottom: 1px solid #DDD;
 	height: 30px;
-	line-height:30px;
+	line-height: 30px;
 	text-align: center;
 	font-weight: bold;
 	font-size: small;
 	background-color: #acd6ff
-	
-	
-	
 }
 
 .tradetable_sell .col1 {
 	width: 27.2%;
-	float:left;
-
+	float: left;
 }
 
 .tradetable_sell .col2 {
 	width: 50%;
-	float:left;
+	float: left;
 }
 
 .tradetable_sell .col3 {
 	width: 18%;
-	float:left;
+	float: left;
 }
-.trade_left .col2{
+
+.trade_left .col2 {
 	cursor: pointer;
 }
-.trade_left .col3{
+
+.trade_left .col3 {
 	cursor: pointer;
 }
 
-
-
-
+#chatting_data{
+color:#8396ff;
+}
 </style>
 <script>
 	$(document).ready(
-		
 
 			function() {
-				$(".trade_left .col2").click(function(){
-					var price = $(this).text();
-					$("#buyprice").val(price);
-					$("#sellprice").val(price);
-					var total = $("#buyamount").val() * $("#buyprice").val();
-					$("#buytotal").text(total);
-					var total2 = $("#sellamount").val() * $("#sellprice").val();
-					$("#selltotal").text(total2);
-				})
-				$(".trade_left .col3").click(function(){
-					var amount = $(this).text();
-					$("#buyamount").val(amount);
-					$("#sellamount").val(amount);
-					var total = $("#buyamount").val() * $("#buyprice").val();
-					$("#buytotal").text(total);
-					var total2 = $("#sellamount").val() * $("#sellprice").val();
-					$("#selltotal").text(total2);
-				})
-				$("#buyBtn").click(function(){
+				$(".trade_left .col2").click(
+						function() {
+							var price = $(this).text();
+							$("#buyprice").val(price);
+							$("#sellprice").val(price);
+							var total = $("#buyamount").val()
+									* $("#buyprice").val();
+							$("#buytotal").text(total);
+							var total2 = $("#sellamount").val()
+									* $("#sellprice").val();
+							$("#selltotal").text(total2);
+						})
+				$(".trade_left .col3").click(
+						function() {
+							var amount = $(this).text();
+							$("#buyamount").val(amount);
+							$("#sellamount").val(amount);
+							var total = $("#buyamount").val()
+									* $("#buyprice").val();
+							$("#buytotal").text(total);
+							var total2 = $("#sellamount").val()
+									* $("#sellprice").val();
+							$("#selltotal").text(total2);
+						})
+				$("#buyBtn").click(function() {
 					$.ajax({
-						type:"post",
-						url:"btc/buyBTC.do",
-						data:{price:$("#buyprice").val(),amount:$("#buyamount").val()},
-						dataType:"text",
-						success:function(data){
-							if(data=="exist"){
+						type : "post",
+						url : "btc/buyBTC.do",
+						data : {
+							price : $("#buyprice").val(),
+							amount : $("#buyamount").val()
+						},
+						dataType : "text",
+						success : function(data) {
+							if (data == "exist") {
 								$(".tradetable_buy").hide();
-								setTimeout(function(){
-									$(".tradetable_buy").show();	
-								},50)
-							}else if(data=="none"){
+								setTimeout(function() {
+									$(".tradetable_buy").show();
+								}, 50)
+							} else if (data == "none") {
 								$(".tradetable_sell").hide();
-								setTimeout(function(){
-									$(".tradetable_sell").show();	
-								},50)
-								
+								setTimeout(function() {
+									$(".tradetable_sell").show();
+								}, 50)
+
 							}
 						}
 					})
 				})
-				$("#sellBtn").click(function(){
+				$("#sellBtn").click(function() {
 					$.ajax({
-						type:"post",
-						url:"btc/sellBTC.do",
-						data:{price:$("#sellprice").val(),amount:$("#sellamount").val()},
-						success:function(data){
-							
+						type : "post",
+						url : "btc/sellBTC.do",
+						data : {
+							price : $("#sellprice").val(),
+							amount : $("#sellamount").val()
+						},
+						success : function(data) {
+
 						}
 					})
 				})
-				
-				setInterval(function(){
-					$.ajax({	
-						type:"post",
-						url:"btc/buyList.do",
-						datatype:"json",
-						success:function(data){
+
+				setInterval(function() {
+					$.ajax({
+						type : "post",
+						url : "btc/buyList.do",
+						datatype : "json",
+						success : function(data) {
 							var parsedJson = JSON.parse(data);
-							
+
 							$.each(parsedJson.list, function(index, items) {
-					
-								var id1 = "buyprice"+(index);
-								var id2 = "buyamount"+(index);
-				
-								$('#'+id1).text(items.price);
-								$('#'+id2).text(items.amount);
-						
+
+								var id1 = "buyprice" + (index);
+								var id2 = "buyamount" + (index);
+
+								$('#' + id1).text(items.price);
+								$('#' + id2).text(items.amount);
+
 							})
 						}
-		
-						
+
 					})
-					
+
 				}, 500)
-				setInterval(function(){
-					$.ajax({	
-						type:"post",
-						url:"btc/sellList.do",
-						datatype:"json",
-						success:function(data){
+				setInterval(function() {
+					$.ajax({
+						type : "post",
+						url : "btc/sellList.do",
+						datatype : "json",
+						success : function(data) {
 							var parsedJson = JSON.parse(data);
 							$.each(parsedJson.list, function(index, items) {
-							
-								var id1 = "sellprice"+(index);	
-								var id2 = "sellamount"+(index);
-						
-								$('#'+id1).text(items.price);
-								$('#'+id2).text(items.amount);
-						
+
+								var id1 = "sellprice" + (index);
+								var id2 = "sellamount" + (index);
+
+								$('#' + id1).text(items.price);
+								$('#' + id2).text(items.amount);
+
 							})
 						}
-		
-						
+
 					})
-				},500)
-				
+				}, 500)
+
 				$(".tabmenu").each(
 						function() {
 							var tab = $(this).children("ul");
@@ -677,13 +727,13 @@
 					var total = $("#sellamount").val() * $("#sellprice").val();
 					$("#selltotal").text(total);
 				})
-/* 
-				$("#buyBtn").click(function() {
-					$("#buymove").submit();
-				})
-				$("#sellBtn").click(function() {
-					$("#sellmove").submit();
-				}) */
+				/* 
+				 $("#buyBtn").click(function() {
+				 $("#buymove").submit();
+				 })
+				 $("#sellBtn").click(function() {
+				 $("#sellmove").submit();
+				 }) */
 			});
 </script>
 
@@ -748,44 +798,44 @@
 
 				</div>
 				<div class=tradetable_sell>
-					<span class="cell col1">판매</span> <span class="cell col2" id=sellprice4></span> <span
-						class="cell col3" id=sellamount4></span>
+					<span class="cell col1">판매</span> <span class="cell col2"
+						id=sellprice4></span> <span class="cell col3" id=sellamount4></span>
 				</div>
 				<div class=tradetable_sell>
-					<span class="cell col1">판매</span> <span class="cell col2" id=sellprice3></span> <span
-						class="cell col3" id=sellamount3></span>
+					<span class="cell col1">판매</span> <span class="cell col2"
+						id=sellprice3></span> <span class="cell col3" id=sellamount3></span>
 				</div>
 				<div class=tradetable_sell>
-					<span class="cell col1">판매</span> <span class="cell col2" id=sellprice2></span> <span
-						class="cell col3" id=sellamount2></span>
+					<span class="cell col1">판매</span> <span class="cell col2"
+						id=sellprice2></span> <span class="cell col3" id=sellamount2></span>
 				</div>
 				<div class=tradetable_sell>
-					<span class="cell col1">판매</span> <span class="cell col2" id=sellprice1></span> <span
-						class="cell col3" id=sellamount1></span>
+					<span class="cell col1">판매</span> <span class="cell col2"
+						id=sellprice1></span> <span class="cell col3" id=sellamount1></span>
 				</div>
 				<div class=tradetable_sell>
-					<span class="cell col1">판매</span> <span class="cell col2" id=sellprice0></span> <span
-						class="cell col3" id=sellamount0></span>
+					<span class="cell col1">판매</span> <span class="cell col2"
+						id=sellprice0></span> <span class="cell col3" id=sellamount0></span>
 				</div>
 				<div class=tradetable_buy>
-					<span class="cell col1">구매</span> <span class="cell col2" id=buyprice0></span> <span
-						class="cell col3" id=buyamount0></span>
+					<span class="cell col1">구매</span> <span class="cell col2"
+						id=buyprice0></span> <span class="cell col3" id=buyamount0></span>
 				</div>
 				<div class=tradetable_buy>
-					<span class="cell col1">구매</span> <span class="cell col2" id=buyprice1></span> <span
-						class="cell col3" id=buyamount1></span>
+					<span class="cell col1">구매</span> <span class="cell col2"
+						id=buyprice1></span> <span class="cell col3" id=buyamount1></span>
 				</div>
 				<div class=tradetable_buy>
-					<span class="cell col1">구매</span> <span class="cell col2" id=buyprice2></span> <span
-						class="cell col3" id=buyamount2></span>
+					<span class="cell col1">구매</span> <span class="cell col2"
+						id=buyprice2></span> <span class="cell col3" id=buyamount2></span>
 				</div>
 				<div class=tradetable_buy>
-					<span class="cell col1">구매</span> <span class="cell col2" id=buyprice3></span> <span
-						class="cell col3" id=buyamount3></span>
+					<span class="cell col1">구매</span> <span class="cell col2"
+						id=buyprice3></span> <span class="cell col3" id=buyamount3></span>
 				</div>
 				<div class=tradetable_buy>
-					<span class="cell col1">구매</span> <span class="cell col2" id=buyprice4></span> <span
-						class="cell col3" id=buyamount4></span>
+					<span class="cell col1">구매</span> <span class="cell col2"
+						id=buyprice4></span> <span class="cell col3" id=buyamount4></span>
 				</div>
 
 			</div>
@@ -793,11 +843,11 @@
 			<div class=tabmenu>
 				<ul>
 
-					<li class="tabname" id="tabnameisbuy"><a href="javascript:void(0);"
-						id=buytab>매수</a>
-					
-							<div class="tabcontent">
-								<form action=btc/buyBTC.do method=post id=buymove>
+					<li class="tabname" id="tabnameisbuy"><a
+						href="javascript:void(0);" id=buytab>매수</a>
+
+						<div class="tabcontent">
+							<form action=btc/buyBTC.do method=post id=buymove>
 								<div class=avtxt>주문가능</div>
 								<div class=avamount>KRW</div>
 								<div class=tradetxt>매수수량</div>
@@ -818,42 +868,49 @@
 								<div class=tradeconfirm>
 									<button type=button id=buyBtn>매수</button>
 								</div>
-								</form>
-							</div>
-						</li>
+							</form>
+						</div></li>
 
-					<li class="tabname" id="tabnameissell"><a href="javascript:void(0);"
-						id=selltab>매도</a>
+					<li class="tabname" id="tabnameissell"><a
+						href="javascript:void(0);" id=selltab>매도</a>
 						<div class="tabcontent">
 							<form action=btc/sellBTC.do method=post id=sellmove>
-							<div class=avtxt>주문가능</div>
-							<div class=avamount>BTC</div>
-							<div class=tradetxt>매도수량</div>
-							<div class=tradeamount><input type=text id=sellamount placeholder=0 name=amount>BTC</div>
-							<div class=pricetxt>매도가격</div>
-							<div class=priceamount><input type=text id=sellprice placeholder=0 name=price>KRW</div>
-							<div class=total>
+								<div class=avtxt>주문가능</div>
+								<div class=avamount>BTC</div>
+								<div class=tradetxt>매도수량</div>
+								<div class=tradeamount>
+									<input type=text id=sellamount placeholder=0 name=amount>BTC
+								</div>
+								<div class=pricetxt>매도가격</div>
+								<div class=priceamount>
+									<input type=text id=sellprice placeholder=0 name=price>KRW
+								</div>
+								<div class=total>
 
-								<div class=totalleft>주문총액</div>
-								<div class=totalright><span id=selltotal>0</span>KRW</div>
+									<div class=totalleft>주문총액</div>
+									<div class=totalright>
+										<span id=selltotal>0</span>KRW
+									</div>
 
-							</div>
-							<div class=feeinfo>*수수료 : 0.05%</div>
-							<div class=tradeconfirm>
-								<button type=button id=sellBtn>매도</button>
-							</div>
+								</div>
+								<div class=feeinfo>*수수료 : 0.05%</div>
+								<div class=tradeconfirm>
+									<button type=button id=sellBtn>매도</button>
+								</div>
 							</form>
 
 						</div></li>
-					<li class="tabname" id="tabnameishis"><a href="javascript:void(0);">거래내역</a>
+					<li class="tabname" id="tabnameishis"><a
+						href="javascript:void(0);">거래내역</a>
 						<div class="tabcontent">123</div></li>
 				</ul>
-
-
 			</div>
-
 		</div>
-		<div class=chatting>채팅창</div>
+		<div class=chatting>
+			<input type="text" id="message"/> 
+			<input type="button" id="sendBtn" value="전송" />
+			<div id="chatting_data"></div>
+		</div>
 
 	</div>
 </body>
