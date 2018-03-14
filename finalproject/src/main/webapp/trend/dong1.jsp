@@ -13,13 +13,14 @@
          */
         width: 1000px;
         table-layout: fixed;
-        border: solid 1px;
+        background-color: #FFFFFF;
+
     }
     
     #dong1Title1{
        height: 50px;
        float: left;
-       font-size: 30px;
+       font-size: 25px;
 
     }
     #dong1Title2{
@@ -49,6 +50,7 @@
         width:1000px;
         height: 30px;
         border-collapse: collapse;
+        
     }
     #dong1BodyScroll {
         /*
@@ -67,24 +69,36 @@
          * tblBody의 데이터는 필요한 열의 수만큼만 만드시고 헤더와 col의 width는 동일해야 합니다.
          */
         width:1000px;
-        table-layout: fixed;
+        table-layout: fixed; 
         height: 20px;
         border-collapse: collapse;
+        text-align: left;
+        line-height: 20px;
+        
     }
  
     /* 테이블 스타일용 */
     .title {
-        text-align: center;
+        text-align: left;
         font-weight: bold;
     }
-    .content {
+/*     .content {
         border-bottom: 1px solid #efefef;
         padding: 10px 10px 10px 10px;
         text-align: center;               
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
+        border-color: white;
          
+    } */
+    .dong1_border {
+    border-color: white;
+     
+    }
+    .content dong1_border {
+    border-color: white;
+    line-height: 30px;
     }
     
     {white-space,nowrap}
@@ -104,23 +118,22 @@
             <div id="dong1HeadScroll">
                 <table id="dong1Head" border="0" >
                     <colgroup>
-                        <col style="width:200px;" />
+                        <col style="width:250px;" />
                         <col style="width:120px;" />
                         <col style="width:120px;" />
                         <col style="width:120px;" />
                         <col style="width:120px;" />
                         <col style="width:120px;" />
                         <col style="width:120px;" />
-
                     </colgroup>
                     <tr>
                         <td class="title">&nbsp;</td>
-                        <td class="title"><a href="">BTC마켓<img src="../images/ico_change.b47e27e.png"></a></td>
-                        <td class="title"><a href="">1주일<img src="../images/ico_sort.8b2b967.png"></a></td>
-                        <td class="title"><a href="">1개월<img src="../images/ico_sort.8b2b967.png"></a></td>
-                        <td class="title"><a href="">3개월<img src="../images/ico_sort.8b2b967.png"></a></td>
-                        <td class="title"><a href="">6개월<img src="../images/ico_sort.8b2b967.png"></a></td>
-                        <td class="title"><a href="">1 년<img src="../images/ico_sort.8b2b967.png"></a></td>
+                        <td class="title"><a id="hh" href="">BTC마켓<img src="../images/ico_change.b47e27e.png"/></a></td>
+                        <td class="title"><a id="hh" href="">1주일<img src="../images/ico_sort.8b2b967.png"/></a></td>
+                        <td class="title"><a id="hh" href="">1개월<img src="../images/ico_sort.8b2b967.png"/></a></td>
+                        <td class="title"><a id="hh" href="">3개월<img src="../images/ico_sort.8b2b967.png"/></a></td>
+                        <td class="title"><a id="hh" href="">6개월<img src="../images/ico_sort.8b2b967.png"/></a></td>
+                        <td class="title"><a id="hh" href="">1 년<img src="../images/ico_sort.8b2b967.png"/></a></td>
                   
                     </tr>
                 </table>
@@ -129,26 +142,26 @@
             <div id="dong1BodyScroll">
                 <table id="dong1Body" border="0">
                     <colgroup>
-                        <col style="width:200px;" class="right_border" />
-                        <col style="width:120px;" class="right_border" />
-                        <col style="width:120px;" class="right_border" />
-                        <col style="width:120px;" class="right_border" />
-                        <col style="width:120px;" class="right_border" />
-                        <col style="width:120px;" class="right_border" />
-                        <col style="width:120px;" class="right_border" />
+                        <col style="width:250px;" class="dong1_border" />
+                        <col style="width:120px;" class="dong1_border" />
+                        <col style="width:120px;" class="dong1_border" />
+                        <col style="width:120px;" class="dong1_border" />
+                        <col style="width:120px;" class="dong1_border" />
+                        <col style="width:120px;" class="dong1_border" />
+                        <col style="width:120px;" class="dong1_border" />
                         
                     </colgroup>
                     <tr>
-                        <td class="content right_border" ><img src="../logos/BCC.png" width=30px height=30px><a href=""><strong>비트코인</strong></a></td>
-                        <td class="content right_border" ><i>BCC/BTC</i></td>
-                        <td class="content right_border" ><p>+26.69%</p></td>
-                        <td class="content right_border" ><p>+32.88%</p></td>
-                        <td class="content right_border" ><p>+1.69%</p></td>
-                        <td class="content right_border" ><p>+33.69%</p></td>
-                        <td class="content right_border" ><p>+0.69%</p></td>
+                        <td class="content dong1_border" style="text-align: left; "><img src="../logos/BCC.png" width=30px height=30px>&nbsp;<a href=""><strong><font size=4>비트코인</font></strong></a></td>
+                        <td class="content dong1_border" ><i>BCC/BTC</i></td>
+                        <td class="content dong1_border" ><p>+26.69%</p></td>
+                        <td class="content dong1_border" ><p>+32.88%</p></td>
+                        <td class="content dong1_border" ><p>+1.69%</p></td>
+                        <td class="content dong1_border" ><p>+33.69%</p></td>
+                        <td class="content dong1_border" ><p>+0.69%</p></td>
                     </tr>
                     <tr>
-                        <td class="content right_border" ><img src="../logos/SLS.png" width=30px height=30px><a href=""><strong>살루스</strong></a></td>
+                        <td class="content right_border" style="text-align: left;"><img src="../logos/SLS.png" width=30px height=30px>&nbsp;<a href=""><strong><font size=4>살루스</font></strong></a></td>
                         <td class="content right_border" ><i>SLS/BTC</i></td>
                         <td class="content right_border" ><p>-30.69%</p></td>
                         <td class="content right_border" ><p>+32.88%</p></td>
@@ -157,7 +170,7 @@
                         <td class="content right_border" ><p>+0.69%</p></td>
                     </tr>
                     <tr>
-                        <td class="content right_border" ><img src="../logos/MCO.png" width=30px height=30px><a href=""><strong>모나코</strong></a></td>
+                        <td class="content right_border" style="text-align: left;"><img src="../logos/MCO.png" width=30px height=30px>&nbsp;<a href=""><strong><font size=4>모나코</font></strong></a></td>
                         <td class="content right_border" ><i>MCO/BTC</i></td>
                         <td class="content right_border" ><p>+26.69%</p></td>
                         <td class="content right_border" ><p>+32.88%</p></td>
@@ -166,7 +179,7 @@
                         <td class="content right_border" ><p>+0.69%</p></td>
                     </tr>
                     <tr>
-                        <td class="content right_border" ><img src="../logos/FTC.png" width=30px height=30px><a href=""><strong>모나코</strong></a></td>
+                        <td class="content right_border" style="text-align: left;"><img src="../logos/FTC.png" width=30px height=30px>&nbsp;<a href=""><strong><font size=4>모나코</font></strong></a></td>
                         <td class="content right_border" ><i>FTC/BTC</i></td>
                         <td class="content right_border" ><p>+26.69%</p></td>
                         <td class="content right_border" ><p>+32.88%</p></td>
