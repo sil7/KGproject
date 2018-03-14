@@ -6,7 +6,23 @@
  	<insert id="insertBuy" parameterType="btc">
  		insert into btcbuy (seq,id,price,amount) values(btcbuy_seq.nextval,'bkm412',#{price},#{amount})
  	</insert>
+ 	<insert id="insertSell" parameterType="btc">
+ 		insert into btcsell (seq,id,price,amount) values(btcsell_seq.nextval,'bkm412',#{price},#{amount})
+ 	</insert>
  	<select id="getBuy" resultType="btc">
- 		select * from btcbuy
+ 		select * from (select price,sum(amount) as amount from btcbuy group by price order by price desc) where rownum between 1 and 5
  	</select>
+ 	<select id="getSell" resultType="btc">
+ 	select * from (select price, SUM(amount) as amount from btcsell group by price order by price asc) where rownum between 1 and 5
+ 	</select>
+ 	
+ 	<update id="buyProcess1" parameterType="btc">
+ 		update btcsell set amount=amount-#{amount} where seq = (select seq from (select * from btcsell where price=#{price} order by seq) where rownum=1)
+ 	</update>
+ 	<select id="buyProcess2" parameterType="btc" resultType="btc">
+ 		select * from (select * from btcsell where price=#{price} order by seq) where rownum=1
+ 	</select>
+ 	<delete id="buyProcess3" parameterType="btc">
+ 		delete from btcsell where seq=#{seq}
+ 	</delete>
  </mapper>

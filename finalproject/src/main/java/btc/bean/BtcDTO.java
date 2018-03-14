@@ -7,5 +7,5 @@ public class BtcDTO {
 	private int seq;
 	private String id;
 	private int price;
-	private int amount;
+	private double amount;
 }

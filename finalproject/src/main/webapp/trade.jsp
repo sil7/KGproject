@@ -374,11 +374,21 @@
 	float: left;
 }
 
-.tradeconfirm button {
+#buyBtn {
 	width: 100%;
 	height: 60px;
 	border: 0;
 	background-color: #d14e45;
+	color: white;
+	font-size: large;
+	font-weight: bold;
+	cursor: pointer;
+}
+#sellBtn {
+	width: 100%;
+	height: 60px;
+	border: 0;
+	background-color: #0952c5;
 	color: white;
 	font-size: large;
 	font-weight: bold;
@@ -417,54 +427,64 @@
 }
 
 .tradetable_buy .cell {
-	display: table-cell;
+	display: block;
 	padding: 3px;
 	border-bottom: 1px solid #DDD;
 	height: 30px;
 	line-height:30px;
 	text-align: center;
-}
-
-.tradetable_buy .col1 {
-	width: 170px;
-}
-
-.tradetable_buy .col2 {
-	width: 300px;
-}
-
-.tradetable_buy .col3 {
-	width: 120px;
-}
-
-.tradetable_sell .cell {
-	display: table-cell;
-	padding: 3px;
-	border-bottom: 1px solid #DDD;
-	height: 30px;
-	line-height:30px;
-	text-align: center;
-}
-
-.tradetable_sell .col1 {
-	width: 170px;
-}
-
-.tradetable_sell .col2 {
-	width: 300px;
-}
-
-.tradetable_sell .col3 {
-	width: 120px;
-}
-
-.tradetable_buy {
+	font-weight: bold;
+	font-size: small;
 	background-color: #ffaaaa
 }
 
-.tradetable_sell {
-	background-color: #acd6ff
+.tradetable_buy .col1 {
+	width: 27.2%;
+	float:left;
 }
+
+.tradetable_buy .col2 {
+	width: 50%;
+	float:left;
+}
+
+.tradetable_buy .col3 {
+	width: 18%;
+	float:left;
+}
+
+.tradetable_sell .cell {
+	display: block;
+	padding: 3px;
+	border-bottom: 1px solid #DDD;
+	height: 30px;
+	line-height:30px;
+	text-align: center;
+	font-weight: bold;
+	font-size: small;
+	background-color: #acd6ff
+	
+	
+	
+}
+
+.tradetable_sell .col1 {
+	width: 27.2%;
+	float:left;
+
+}
+
+.tradetable_sell .col2 {
+	width: 50%;
+	float:left;
+}
+
+.tradetable_sell .col3 {
+	width: 18%;
+	float:left;
+}
+
+
 
 </style>
 <script>
@@ -472,6 +492,27 @@
 		
 
 			function() {
+				$("#buyBtn").click(function(){
+					$.ajax({
+						type:"post",
+						url:"btc/buyBTC.do",
+						data:{price:$("#buyprice").val(),amount:$("#buyamount").val()},
+						success:function(data){
+							
+						}
+					})
+				})
+				$("#sellBtn").click(function(){
+					$.ajax({
+						type:"post",
+						url:"btc/sellBTC.do",
+						data:{price:$("#sellprice").val(),amount:$("#sellamount").val()},
+						success:function(data){
+							
+						}
+					})
+				})
+				
 				setInterval(function(){
 					$.ajax({	
 						type:"post",
@@ -479,9 +520,9 @@
 						datatype:"json",
 						success:function(data){
 							var parsedJson = JSON.parse(data);
-
+							
 							$.each(parsedJson.list, function(index, items) {
-								
+					
 								var id1 = "buyprice"+(index);
 								var id2 = "buyamount"+(index);
 				
@@ -493,7 +534,29 @@
 		
 						
 					})
-				}, 1000)
+					
+				}, 500)
+				setInterval(function(){
+					$.ajax({	
+						type:"post",
+						url:"btc/sellList.do",
+						datatype:"json",
+						success:function(data){
+							var parsedJson = JSON.parse(data);
+							$.each(parsedJson.list, function(index, items) {
+							
+								var id1 = "sellprice"+(index);	
+								var id2 = "sellamount"+(index);
+						
+								$('#'+id1).text(items.price);
+								$('#'+id2).text(items.amount);
+						
+							})
+						}
+		
+						
+					})
+				},500)
 				
 				$(".tabmenu").each(
 						function() {
@@ -561,18 +624,29 @@
 							tabBtn.eq(0).click();
 						});
 
-				$("#buyamount").blur(function() {
+				$("#buyamount").keyup(function() {
 					var total = $("#buyamount").val() * $("#buyprice").val();
 					$("#buytotal").text(total);
 				})
-				$("#buyprice").blur(function() {
+				$("#buyprice").keyup(function() {
 					var total = $("#buyamount").val() * $("#buyprice").val();
 					$("#buytotal").text(total);
 				})
-
+				$("#sellamount").keyup(function() {
+					var total = $("#buyamount").val() * $("#sellprice").val();
+					$("#selltotal").text(total);
+				})
+				$("#sellprice").keyup(function() {
+					var total = $("#sellamount").val() * $("#sellprice").val();
+					$("#selltotal").text(total);
+				})
+/* 
 				$("#buyBtn").click(function() {
 					$("#buymove").submit();
 				})
+				$("#sellBtn").click(function() {
+					$("#sellmove").submit();
+				}) */
 			});
 </script>
 
@@ -637,44 +711,44 @@
 
 				</div>
 				<div class=tradetable_sell>
-					<span class="cell col1"></span> <span class="cell col2"></span> <span
-						class="cell col3"></span>
+					<span class="cell col1">판매</span> <span class="cell col2" id=sellprice4></span> <span
+						class="cell col3" id=sellamount4></span>
 				</div>
 				<div class=tradetable_sell>
-					<span class="cell col1"></span> <span class="cell col2"></span> <span
-						class="cell col3"></span>
+					<span class="cell col1">판매</span> <span class="cell col2" id=sellprice3></span> <span
+						class="cell col3" id=sellamount3></span>
 				</div>
 				<div class=tradetable_sell>
-					<span class="cell col1"></span> <span class="cell col2"></span> <span
-						class="cell col3"></span>
+					<span class="cell col1">판매</span> <span class="cell col2" id=sellprice2></span> <span
+						class="cell col3" id=sellamount2></span>
 				</div>
 				<div class=tradetable_sell>
-					<span class="cell col1"></span> <span class="cell col2"></span> <span
-						class="cell col3"></span>
+					<span class="cell col1">판매</span> <span class="cell col2" id=sellprice1></span> <span
+						class="cell col3" id=sellamount1></span>
 				</div>
 				<div class=tradetable_sell>
-					<span class="cell col1"></span> <span class="cell col2"></span> <span
-						class="cell col3"></span>
+					<span class="cell col1">판매</span> <span class="cell col2" id=sellprice0></span> <span
+						class="cell col3" id=sellamount0></span>
 				</div>
 				<div class=tradetable_buy>
-					<span class="cell col1"></span> <span class="cell col2" id=buyprice1></span> <span
+					<span class="cell col1">구매</span> <span class="cell col2" id=buyprice0></span> <span
+						class="cell col3" id=buyamount0></span>
+				</div>
+				<div class=tradetable_buy>
+					<span class="cell col1">구매</span> <span class="cell col2" id=buyprice1></span> <span
 						class="cell col3" id=buyamount1></span>
 				</div>
 				<div class=tradetable_buy>
-					<span class="cell col1"></span> <span class="cell col2" id=buyprice2></span> <span
+					<span class="cell col1">구매</span> <span class="cell col2" id=buyprice2></span> <span
 						class="cell col3" id=buyamount2></span>
 				</div>
 				<div class=tradetable_buy>
-					<span class="cell col1"></span> <span class="cell col2" id=buyprice3></span> <span
+					<span class="cell col1">구매</span> <span class="cell col2" id=buyprice3></span> <span
 						class="cell col3" id=buyamount3></span>
 				</div>
 				<div class=tradetable_buy>
-					<span class="cell col1"></span> <span class="cell col2" id=buyprice4></span> <span
+					<span class="cell col1">구매</span> <span class="cell col2" id=buyprice4></span> <span
 						class="cell col3" id=buyamount4></span>
-				</div>
-				<div class=tradetable_buy>
-					<span class="cell col1"></span> <span class="cell col2" id=buyprice5></span> <span
-						class="cell col3" id=buyamount5></span>
 				</div>
 
 			</div>
@@ -682,7 +756,7 @@
 			<div class=tabmenu>
 				<ul>
 
-					<li class="tabname" id="tabnameisbuy"><a href="#link"
+					<li class="tabname" id="tabnameisbuy"><a href="javascript:void(0);"
 						id=buytab>매수</a>
 					
 							<div class="tabcontent">
@@ -691,11 +765,11 @@
 								<div class=avamount>KRW</div>
 								<div class=tradetxt>매수수량</div>
 								<div class=tradeamount>
-									<input type=text id=buyamount value=0 name=amount>BTC
+									<input type=text id=buyamount placeholder=0 name=amount>BTC
 								</div>
 								<div class=pricetxt>매수가격</div>
 								<div class=priceamount>
-									<input type=text id=buyprice value=0 name=price>KRW
+									<input type=text id=buyprice placeholder=0 name=price>KRW
 								</div>
 								<div class=total>
 									<div class=totalleft>주문총액</div>
@@ -711,27 +785,30 @@
 							</div>
 						</li>
 
-					<li class="tabname" id="tabnameissell"><a href="#link"
+					<li class="tabname" id="tabnameissell"><a href="javascript:void(0);"
 						id=selltab>매도</a>
 						<div class="tabcontent">
-
+							<form action=btc/sellBTC.do method=post id=sellmove>
 							<div class=avtxt>주문가능</div>
-							<div class=avamount></div>
+							<div class=avamount>BTC</div>
 							<div class=tradetxt>매도수량</div>
-							<div class=tradeamount></div>
+							<div class=tradeamount><input type=text id=sellamount placeholder=0 name=amount>BTC</div>
 							<div class=pricetxt>매도가격</div>
-							<div class=priceamount></div>
+							<div class=priceamount><input type=text id=sellprice placeholder=0 name=price>KRW</div>
 							<div class=total>
 
 								<div class=totalleft>주문총액</div>
-								<div class=totalright>BTC</div>
+								<div class=totalright><span id=selltotal>0</span>KRW</div>
 
 							</div>
 							<div class=feeinfo>*수수료 : 0.05%</div>
-							<div class=tradeconfirm></div>
+							<div class=tradeconfirm>
+								<button type=button id=sellBtn>매도</button>
+							</div>
+							</form>
 
 						</div></li>
-					<li class="tabname" id="tabnameishis"><a href="#link">거래내역</a>
+					<li class="tabname" id="tabnameishis"><a href="javascript:void(0);">거래내역</a>
 						<div class="tabcontent">123</div></li>
 				</ul>
 

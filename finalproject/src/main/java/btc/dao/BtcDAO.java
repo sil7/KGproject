@@ -9,4 +9,5 @@ public interface BtcDAO {
 	public void insertSell(BtcDTO coinDTO);
 	public List<BtcDTO> getBuy();
 	public List<BtcDTO> getSell();
+	public BtcDTO buyProcess(BtcDTO btcDTO);
 }

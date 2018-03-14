@@ -18,13 +18,12 @@ public class BtcDAOMybatis implements BtcDAO{
 	@Override
 	public void insertBuy(BtcDTO coinDTO) {
 		sqlSession.insert("btcSQL.insertBuy",coinDTO);
-		
+
 	}
 
 	@Override
 	public void insertSell(BtcDTO coinDTO) {
-		// TODO Auto-generated method stub
-		
+		sqlSession.insert("btcSQL.insertSell",coinDTO);
 	}
 
 	@Override
@@ -36,7 +35,29 @@ public class BtcDAOMybatis implements BtcDAO{
 	@Override
 	public List<BtcDTO> getSell() {
 		// TODO Auto-generated method stub
+		return sqlSession.selectList("btcSQL.getSell");
+	}
+
+	@Override
+	public synchronized BtcDTO buyProcess(BtcDTO btcDTO) {
+		while(true) {
+			sqlSession.update("btcSQL.buyProcess1",btcDTO);
+			BtcDTO pDTO = sqlSession.selectOne("btcSQL.buyProcess2",btcDTO);
+			if(pDTO!=null) {
+				if(pDTO.getAmount()<0) {
+					btcDTO.setAmount(Math.abs(pDTO.getAmount()));
+				}else if(pDTO.getAmount()==0) {
+					sqlSession.delete("btcSQL.buyProcess3",pDTO);
+					break;
+				}else {
+					return btcDTO;
+				}
+			}else if(pDTO==null) {
+				return btcDTO;
+			}
+		}
 		return null;
+
 	}
 
 }
