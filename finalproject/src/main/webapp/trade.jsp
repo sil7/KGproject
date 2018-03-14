@@ -421,6 +421,7 @@
 	padding: 3px;
 	border-bottom: 1px solid #DDD;
 	height: 30px;
+	line-height:30px;
 	text-align: center;
 }
 
@@ -441,6 +442,7 @@
 	padding: 3px;
 	border-bottom: 1px solid #DDD;
 	height: 30px;
+	line-height:30px;
 	text-align: center;
 }
 
@@ -467,7 +469,32 @@
 </style>
 <script>
 	$(document).ready(
+		
+
 			function() {
+				setInterval(function(){
+					$.ajax({	
+						type:"post",
+						url:"btc/buyList.do",
+						datatype:"json",
+						success:function(data){
+							var parsedJson = JSON.parse(data);
+
+							$.each(parsedJson.list, function(index, items) {
+								
+								var id1 = "buyprice"+(index);
+								var id2 = "buyamount"+(index);
+				
+								$('#'+id1).text(items.price);
+								$('#'+id2).text(items.amount);
+						
+							})
+						}
+		
+						
+					})
+				}, 1000)
+				
 				$(".tabmenu").each(
 						function() {
 							var tab = $(this).children("ul");
@@ -630,24 +657,24 @@
 						class="cell col3"></span>
 				</div>
 				<div class=tradetable_buy>
-					<span class="cell col1"></span> <span class="cell col2"></span> <span
-						class="cell col3"></span>
+					<span class="cell col1"></span> <span class="cell col2" id=buyprice1></span> <span
+						class="cell col3" id=buyamount1></span>
 				</div>
 				<div class=tradetable_buy>
-					<span class="cell col1"></span> <span class="cell col2"></span> <span
-						class="cell col3"></span>
+					<span class="cell col1"></span> <span class="cell col2" id=buyprice2></span> <span
+						class="cell col3" id=buyamount2></span>
 				</div>
 				<div class=tradetable_buy>
-					<span class="cell col1"></span> <span class="cell col2"></span> <span
-						class="cell col3"></span>
+					<span class="cell col1"></span> <span class="cell col2" id=buyprice3></span> <span
+						class="cell col3" id=buyamount3></span>
 				</div>
 				<div class=tradetable_buy>
-					<span class="cell col1"></span> <span class="cell col2"></span> <span
-						class="cell col3"></span>
+					<span class="cell col1"></span> <span class="cell col2" id=buyprice4></span> <span
+						class="cell col3" id=buyamount4></span>
 				</div>
 				<div class=tradetable_buy>
-					<span class="cell col1"></span> <span class="cell col2"></span> <span
-						class="cell col3"></span>
+					<span class="cell col1"></span> <span class="cell col2" id=buyprice5></span> <span
+						class="cell col3" id=buyamount5></span>
 				</div>
 
 			</div>
