@@ -1,0 +1,678 @@
+@charset "UTF-8";
+
+section article .totalB p {
+	float: right;
+	margin-top: 22px;
+	color: #d60000;
+	font-size: 21px;
+	font-weight: 700;
+	letter-spacing: 1px;
+}
+
+section article .totalB p i {
+	color: #666;
+	font-size: 11px;
+	font-weight: 400;
+}
+
+section article .totalB strong {
+	float: left;
+	margin-top: 22px;
+	color: #2b2b2b;
+	font-size: 14px;
+	font-weight: 700;
+	font-family: Noto Sans KR;
+}
+
+section article .totalB {
+	padding: 0 15px;
+}
+
+section article .totalB {
+	display: block;
+	height: 70px;
+	padding: 0 20px;
+	border-bottom: 1px solid #d4d6dc;
+}
+
+section article table.ty05 td.bar p {
+	display: block;
+	padding: 0 6px;
+}
+
+section article .serchCoin .chkB label {
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: 6px;
+}
+
+input:focus, textarea:focus, select:focus {
+	outline-offset: -2px;
+}
+
+user agent stylesheet
+:focus {
+	outline: -webkit-focus-ring-color auto 5px;
+}
+
+section article .serchCoin .chkB {
+	text-align: left;
+	display: inline-block;
+	box-sizing: border-box;
+	width: 105px;
+	padding-left: 12px;
+}
+
+section article .serchCoin .serchInput .serchBt {
+	position: absolute;
+	right: 10px;
+	top: 8px;
+	display: block;
+	width: 26px;
+	height: 26px;
+	background: url(https://cdn.upbit.com/images/bg.2680af0.png) -90px 0
+		no-repeat;
+	overflow: hidden;
+	text-indent: -999em;
+}
+
+section article .serchCoin .serchInput input {
+	width: 100%;
+	border: 0;
+	height: 26px;
+	box-sizing: border-box;
+	border-collapse: collapse;
+	font-weight: 700;
+	font-family: Dotum, Noto Sans KR;
+	color: #a2a6b3;
+}
+
+input, select {
+	font-size: 100%;
+	vertical-align: middle;
+}
+
+section article table {
+	width: 100%;
+}
+
+section article .serchCoin .serchInput {
+	position: relative;
+	width: 450px;
+	height: 42px;
+	display: inline-block;
+	border-right: 1px solid #d4d6dc;
+	padding: 8px 36px 8px 15px;
+	box-sizing: border-box;
+}
+
+section article table.ty05 td.bar a {
+	display: block;
+	height: 34px;
+	background-color: #e4f1fe;
+	line-height: 34px;
+	color: #2b2b2b;
+	letter-spacing: 1px;
+	text-align: right;
+	box-sizing: border-box;
+}
+
+section article table.highlight tbody tr.on {
+	background-color: #f4f5f8;
+}
+
+section article table.ty05 td a.tit {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+section article table.ty05 td .tit strong {
+	display: block;
+	color: #2b2b2b;
+	font-weight: 700;
+	font-family: Dotum, Noto Sans KR;
+}
+
+section article table.ty05 td {
+	height: 64px;
+	border-left: 1px solid #eeeef5;
+}
+
+section article table.ty05 td.rAlign strong {
+	display: block;
+	color: #2b2b2b;
+	font-size: 14px;
+	font-weight: 700;
+	letter-spacing: 1px;
+}
+
+section article .serchCoin .chkB a {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background: url(https://cdn.upbit.com/images/bg.2680af0.png) -120px
+		-50px no-repeat;
+	overflow: hidden;
+	text-indent: -999em;
+	vertical-align: middle;
+}
+
+section article .serchCoin {
+	width: 100%;
+	height: 42px;
+	display: inline-block;
+	border-bottom: 1px solid #d4d6dc;
+}
+
+section article table thead th a img {
+	vertical-align: middle;
+}
+
+img {
+	border: 0;
+	vertical-align: top;
+}
+
+section article table thead th a {
+	color: #666;
+	text-decoration: none;
+}
+
+section article table.ty05 td.cAlign span.green {
+	color: #007b03;
+}
+
+section article table thead th {
+	height: 30px;
+	background-color: #f9fafc;
+	color: #666;
+	font-size: 11px;
+	font-family: Dotum, Noto Sans KR;
+}
+
+section article table.ty05 td.cAlign span {
+	color: #999;
+	font-size: 11px;
+	font-weight: 700;
+	font-family: Dotum, Noto Sans KR;
+}
+
+section article table td.cAlign {
+	padding: 0;
+	text-align: center;
+}
+
+section article table tr .bar {
+	position: relative;
+	width: 7px;
+	height: 27px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+table, td, th {
+	border-collapse: collapse;
+}
+
+section article table.ty05 td .tit i {
+	display: block;
+	color: #666;
+	font-size: 11px;
+	letter-spacing: 1px;
+}
+
+section article table td:first-child {
+	padding-left: 14px;
+	text-align: inherit;
+}
+
+section article table td {
+	height: 44px;
+	border-top: 1px solid #f1f1f4;
+	color: #2b2b2b;
+	text-align: right;
+}
+
+table, td, th {
+	border-collapse: collapse;
+}
+
+tbody {
+	display: table-row-group;
+	vertical-align: middle;
+	border-color: inherit;
+}
+
+section .halfB .leftB {
+	float: left;
+	width: 50%;
+	padding-right: 5px;
+	box-sizing: border-box;
+}
+
+ul, menu, dir {
+	display: block;
+	list-style-type: disc;
+	-webkit-margin-before: 1em;
+	-webkit-margin-after: 1em;
+	-webkit-margin-start: 0px;
+	-webkit-margin-end: 0px;
+	-webkit-padding-start: 40px;
+}
+
+li, ol, ul {
+	list-style: none;
+}
+
+li {
+	display: list-item;
+	text-align: -webkit-match-parent;
+}
+
+i, cite, em, var, address, dfn {
+	font-style: italic;
+}
+
+strong, b {
+	font-weight: bold;
+}
+
+cite, em, i, u {
+	font-style: normal;
+}
+
+.bgWhite {
+	background-color: #e9ecf1;
+}
+
+dl {
+	display: block;
+	-webkit-margin-before: 1em;
+	-webkit-margin-after: 1em;
+	-webkit-margin-start: 0px;
+	-webkit-margin-end: 0px;
+}
+
+dd {
+	display: block;
+	-webkit-margin-start: 40px;
+}
+
+dt {
+	display: block;
+}
+
+cite, em, i, u {
+	font-style: normal;
+}
+
+a, a:active, a:visited {
+	text-decoration: none;
+}
+
+a {
+	color: #2b2b2b;
+}
+
+a:-webkit-any-link {
+	color: -webkit-link;
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+tr {
+	display: table-row;
+	vertical-align: inherit;
+	border-color: inherit;
+}
+
+section article table.ty05 td:first-child {
+	border-left: 0;
+}
+
+em.logo {
+	width: 26px;
+	height: 26px;
+	margin-right: 10px;
+	background: pink;
+	vertical-align: middle;
+}
+
+body {
+	background: #fff;
+	color: #2b2b2b;
+	font: normal 12px Droid Sans, AppleSDGothicNeo-Regular, Malgun Gothic,
+		Dotum, sans-serif;
+}
+
+section.ty01 {
+	float: left;
+	width: 990px;
+}
+
+section .halfB {
+	float: left;
+	width: 100%;
+	background-color: #e9ecf1;
+}
+
+section .halfB .leftB.sizeUp {
+	width: 565px;
+}
+
+section article {
+	float: left;
+	width: 100%;
+	margin-bottom: 10px;
+	background-color: #fff;
+	box-shadow: 2px 2px 4px #dee1e7;
+}
+
+section .halfB .leftB .scrollB {
+	overflow: hidden;
+}
+
+section .halfB .rightB.sizeUp {
+	width: 425px;
+}
+
+section .halfB .rightB {
+	float: left;
+	width: 50%;
+	padding-left: 5px;
+	box-sizing: border-box;
+}
+
+section .halfB .rightB.sizeUp .titB {
+	padding: 0 20px;
+}
+
+section article .titB {
+	display: block;
+	height: 42px;
+	padding: 0 14px;
+	border-bottom: 1px solid #d4d6dc;
+}
+
+section article .dlB {
+	display: block;
+	width: 100%;
+}
+
+section article .dlB dl.bg.top {
+	height: 26px;
+}
+
+section article .dlB dl.bg {
+	background-color: #fbfbfc;
+	border-bottom: 1px solid #f1f1f4;
+}
+
+section article .dlB dl {
+	height: 52px;
+	padding: 14px 20px;
+	background-color: #fff;
+	border-bottom: 1px solid #d4d6dc;
+}
+
+section article .dlB dl dt.first {
+	width: 40%;
+	color: #2b2b2b;
+	font-size: 14px;
+	font-weight: 700;
+}
+
+section article .dlB dl dt {
+	float: left;
+	width: 30%;
+	height: 26px;
+	line-height: 26px;
+	color: #666;
+	font-size: 13px;
+	font-family: Noto Sans KR;
+}
+
+section article .dlB dl dd.first {
+	width: 60%;
+	color: #666;
+}
+
+section article .dlB dl dd {
+	float: right;
+	width: 70%;
+	height: 26px;
+	line-height: 26px;
+	color: #2b2b2b;
+	letter-spacing: 1px;
+	text-align: right;
+}
+
+section article .dlB dl.bg dd.first strong {
+	font-size: 18px;
+}
+
+section article .dlB dl dd.first strong {
+	color: #2b2b2b;
+	font-size: 14px;
+	font-weight: 700;
+}
+
+section article .dlB dl dd strong {
+	font-size: 14px;
+}
+
+section article .dlB dl a.btn {
+	display: inline-block;
+	height: 18px;
+	margin-left: 2px;
+	padding: 0 4px;
+	border: 1px solid #d2d3d7;
+	border-radius: .1em;
+	line-height: 20px;
+	color: #666;
+	font-size: 11px;
+	font-weight: 400;
+	font-family: Dotum, Noto Sans KR;
+	text-align: center;
+}
+
+.mainB section article .dlB dl dt {
+	float: left;
+	width: 30%;
+	height: 26px;
+	line-height: 26px;
+	color: #666;
+	font-size: 13px;
+	font-family: Noto Sans KR;
+}
+
+section article .dlB dl dd a.tooltip {
+	margin: 0 0 0 2px;
+	vertical-align: -4px;
+}
+
+a.tooltip {
+	position: relative;
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	margin-top: 18px;
+	background: url(https://cdn.upbit.com/images/bg.2680af0.png) 0 -40px
+		no-repeat;
+	overflow: visible;
+	vertical-align: -3px;
+	text-decoration: none;
+}
+
+a.tooltip:hover div {
+	position: absolute;
+	top: -56px;
+	left: -29px;
+	display: block;
+	min-width: 134px;
+	padding: 8px 10px;
+	background-color: #fff;
+	border: 1px solid #c8cad1;
+	box-shadow: 0 1px 1px #f5f5f5;
+	line-height: 1.5em;
+	color: #333;
+	font-size: 11px;
+	font-family: Dotum, Noto Sans KR;
+	letter-spacing: 0;
+	text-align: left;
+	z-index: 100;
+}
+
+a.tooltip div {
+	display: none;
+}
+
+section article .tabB {
+	display: block;
+	width: 100%;
+}
+
+section article .tabB ul {
+	width: 100%;
+	overflow: hidden;
+}
+
+section article .tabB ul li:first-child {
+	width: 33.334%;
+}
+
+section article .tabB ul li {
+	float: left;
+	width: 33.333%;
+}
+
+section article span.btnB {
+	display: block;
+	padding: 30px 20px;
+	font-family: Noto Sans KR;
+	overflow: hidden;
+}
+
+section article span.btnB em {
+	display: block;
+	margin-bottom: 20px;
+	color: #666;
+	font-size: 14px;
+	text-align: center;
+}
+
+section article span.btnB a.btn {
+	display: block;
+	width: 100%;
+	height: 44px;
+	background-color: #0062df;
+	border-radius: .1em;
+	line-height: 44px;
+	color: #fff;
+	font-size: 14px;
+	font-weight: 500;
+	text-align: center;
+}
+
+section article .listB {
+	display: block;
+	padding: 20px;
+	background-color: #fbfbfc;
+	border-top: 1px solid #d4d6dc;
+	overflow: hidden;
+}
+
+section article .listB strong {
+	display: block;
+	margin-bottom: 10px;
+	color: #de3940;
+	font-weight: 700;
+	font-family: Dotum, Noto Sans KR;
+}
+
+section article .listB strong i {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	margin-right: 5px;
+	background: url(https://cdn.upbit.com/images/bg.2680af0.png) -60px -40px
+		no-repeat;
+	overflow: hidden;
+	text-indent: -999em;
+	vertical-align: -3px;
+}
+
+section article .listB ul li:first-child {
+	margin-top: 0;
+}
+
+section article .listB ul li {
+	margin-top: 10px;
+	padding-left: 10px;
+	background: url(https://cdn.upbit.com/images/ico_dot.1240590.png) 0 9px
+		no-repeat;
+	line-height: 1.8em;
+	color: #2b2b2b;
+	font-family: Dotum, Noto Sans KR;
+	overflow: hidden;
+}
+
+section article .listB ul {
+	padding: 0 6px;
+}
+
+section article .tabB ul li a.on {
+	height: 40px;
+	border-bottom: 3px solid #115dcb;
+	color: #115dcb;
+	font-weight: 700;
+}
+
+section article .tabB ul li a {
+	display: block;
+	width: 100%;
+	height: 42px;
+	border-bottom: 1px solid #d4d6dc;
+	line-height: 42px;
+	color: #2b2b2b;
+	font-size: 14px;
+	font-weight: 500;
+	font-family: Noto Sans KR;
+	text-align: center;
+}
+
+section article .titB strong {
+	float: left;
+	margin-top: 8px;
+	color: #2b2b2b;
+	font-size: 16px;
+	font-weight: 700;
+	font-family: Noto Sans KR;
+}
+
+section article .titB a.refresh {
+	float: right;
+	display: block;
+	width: 16px;
+	height: 16px;
+	margin-top: 13px;
+	background: url(https://cdn.upbit.com/images/bg.2680af0.png) -450px
+		-30px no-repeat;
+	overflow: hidden;
+	text-indent: -999em;
+}
+
+div {
+	display: block;
+}
+
+a, abbr, acronym, body, caption, cite, code, dd, del, dfn, div, dl, dt,
+	em, embed, fieldset, form, h1, h2, h3, h4, h5, h6, html, i, iframe, img,
+	ins, label, legend, li, object, ol, p, pre, q, s, samp, span, strike,
+	strong, sub, sup, table, tbody, td, tfoot, th, thead, tr, u, ul {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+}
