@@ -483,6 +483,13 @@
 	width: 18%;
 	float:left;
 }
+.trade_left .col2{
+	cursor: pointer;
+}
+.trade_left .col3{
+	cursor: pointer;
+}
+
 
 
 
@@ -492,13 +499,43 @@
 		
 
 			function() {
+				$(".trade_left .col2").click(function(){
+					var price = $(this).text();
+					$("#buyprice").val(price);
+					$("#sellprice").val(price);
+					var total = $("#buyamount").val() * $("#buyprice").val();
+					$("#buytotal").text(total);
+					var total2 = $("#sellamount").val() * $("#sellprice").val();
+					$("#selltotal").text(total2);
+				})
+				$(".trade_left .col3").click(function(){
+					var amount = $(this).text();
+					$("#buyamount").val(amount);
+					$("#sellamount").val(amount);
+					var total = $("#buyamount").val() * $("#buyprice").val();
+					$("#buytotal").text(total);
+					var total2 = $("#sellamount").val() * $("#sellprice").val();
+					$("#selltotal").text(total2);
+				})
 				$("#buyBtn").click(function(){
 					$.ajax({
 						type:"post",
 						url:"btc/buyBTC.do",
 						data:{price:$("#buyprice").val(),amount:$("#buyamount").val()},
+						dataType:"text",
 						success:function(data){
-							
+							if(data=="exist"){
+								$(".tradetable_buy").hide();
+								setTimeout(function(){
+									$(".tradetable_buy").show();	
+								},50)
+							}else if(data=="none"){
+								$(".tradetable_sell").hide();
+								setTimeout(function(){
+									$(".tradetable_sell").show();	
+								},50)
+								
+							}
 						}
 					})
 				})
@@ -633,7 +670,7 @@
 					$("#buytotal").text(total);
 				})
 				$("#sellamount").keyup(function() {
-					var total = $("#buyamount").val() * $("#sellprice").val();
+					var total = $("#sellamount").val() * $("#sellprice").val();
 					$("#selltotal").text(total);
 				})
 				$("#sellprice").keyup(function() {

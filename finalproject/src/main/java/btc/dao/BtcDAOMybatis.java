@@ -39,18 +39,19 @@ public class BtcDAOMybatis implements BtcDAO{
 	}
 
 	@Override
-	public synchronized BtcDTO buyProcess(BtcDTO btcDTO) {
+	public BtcDTO buyProcess(BtcDTO btcDTO) {
 		while(true) {
 			sqlSession.update("btcSQL.buyProcess1",btcDTO);
 			BtcDTO pDTO = sqlSession.selectOne("btcSQL.buyProcess2",btcDTO);
 			if(pDTO!=null) {
 				if(pDTO.getAmount()<0) {
 					btcDTO.setAmount(Math.abs(pDTO.getAmount()));
+					sqlSession.delete("btcSQL.buyProcess3",pDTO);
 				}else if(pDTO.getAmount()==0) {
 					sqlSession.delete("btcSQL.buyProcess3",pDTO);
 					break;
 				}else {
-					return btcDTO;
+					return null;
 				}
 			}else if(pDTO==null) {
 				return btcDTO;

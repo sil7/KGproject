@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import btc.bean.BtcDTO;
@@ -19,14 +20,19 @@ public class BtcController {
 	private BtcDAO btcDAO;
 
 	@RequestMapping(value="/buyBTC.do")
-	public synchronized void insertBuy(@ModelAttribute BtcDTO btcDTO) {
+	public @ResponseBody synchronized String insertBuy(@ModelAttribute BtcDTO btcDTO) {
 		String id = "bkm412"; // btcDTO.getId();
+	
 		while(true) {
 			List<BtcDTO> list = btcDAO.getSell();
+			if(list==null) {
+				break;
+			}
 			if(btcDTO.getPrice()>=list.get(0).getPrice()) {
+				
 				btcDTO = btcDAO.buyProcess(btcDTO);
 				if(btcDTO==null) {
-					return;
+					return "none";
 				}
 			}else {
 				break;
@@ -34,6 +40,7 @@ public class BtcController {
 		}
 		btcDTO.setId(id);
 		btcDAO.insertBuy(btcDTO);
+		return "exist";
 	}
 	@RequestMapping(value="/sellBTC.do")
 	public void insertSell(@ModelAttribute BtcDTO btcDTO) {

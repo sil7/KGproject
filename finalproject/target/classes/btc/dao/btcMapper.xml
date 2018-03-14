@@ -17,10 +17,10 @@
  	</select>
  	
  	<update id="buyProcess1" parameterType="btc">
- 		update btcsell set amount=amount-#{amount} where seq = (select seq from (select * from btcsell where price=#{price} order by seq) where rownum=1)
+		update btcsell set amount=amount-#{amount} where seq = (select seq from (select * from btcsell where price <![CDATA[<=]]>#{price} order by price asc, seq asc) where rownum=1)
  	</update>
  	<select id="buyProcess2" parameterType="btc" resultType="btc">
- 		select * from (select * from btcsell where price=#{price} order by seq) where rownum=1
+ 		select * from (select * from btcsell where price<![CDATA[<=]]>#{price} order by price asc, seq asc) where rownum=1
  	</select>
  	<delete id="buyProcess3" parameterType="btc">
  		delete from btcsell where seq=#{seq}
